@@ -1,0 +1,16 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    ingress.kubernetes.io/rewrite-target: "/"
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"    
+  name: {{ include "zeebe-operate.fullname" . }}
+spec:
+  rules:
+  - http:
+      paths:
+        - backend:
+            serviceName: {{ include "zeebe-operate.fullname" . }}
+            servicePort: 80
+          path: /

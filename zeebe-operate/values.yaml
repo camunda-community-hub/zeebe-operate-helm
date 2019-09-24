@@ -1,0 +1,20 @@
+global:
+  zeebe: "zeebe" #the zeebe service instance where operate will connect
+  elasticsearch:
+    host: "elasticsearch-master"
+    port: 9200
+service:
+  type: ClusterIP
+  port: 80
+image:
+  repository: camunda/operate
+  tag: 1.0.0
+
+resources: 
+  requests:
+    cpu: 500m
+    memory: 1Gi
+  limits:
+    cpu: 1000m
+    memory: 2Gi
+
