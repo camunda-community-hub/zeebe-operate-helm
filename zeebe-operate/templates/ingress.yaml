@@ -1,16 +1,23 @@
+{{- if .Values.ingress.enabled -}}
+{{- if semverCompare ">=1.14-0" .Capabilities.KubeVersion.GitVersion -}}
+apiVersion: networking.k8s.io/v1beta1
+{{- else -}}
 apiVersion: extensions/v1beta1
+{{- end }}
 kind: Ingress
 metadata:
-  annotations:
-    kubernetes.io/ingress.class: nginx
-    ingress.kubernetes.io/rewrite-target: "/"
-    nginx.ingress.kubernetes.io/ssl-redirect: "false"    
   name: {{ include "zeebe-operate.fullname" . }}
+  labels: {{ include "zeebe-operate.labels" . | nindent 4 }}
+{{- with .Values.ingress.annotations }}
+  annotations: {{ toYaml . | nindent 4 }}
+{{- end }}
 spec:
   rules:
-  - http:
-      paths:
-        - backend:
-            serviceName: {{ include "zeebe-operate.fullname" . }}
-            servicePort: 80
-          path: /
+    - host: {{ .Values.ingress.host }}
+      http:
+        paths:
+          - path: {{ .Values.ingress.path }}
+            backend:
+              serviceName: {{ include "zeebe-operate.fullname" . }}
+              servicePort: 80
+{{- end }}
