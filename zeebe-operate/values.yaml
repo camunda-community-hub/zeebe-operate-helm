@@ -3,6 +3,7 @@ global:
   elasticsearch:
     host: "elasticsearch-master"
     port: 9200
+    clusterName: "elasticsearch"
 service:
   type: ClusterIP
   port: 80
