@@ -9,7 +9,7 @@ service:
   port: 80
 image:
   repository: camunda/operate
-  tag: 1.2.0-alpha2
+  tag: 1.2.0
 
 resources: 
   requests:
@@ -27,7 +27,3 @@ ingress:
     nginx.ingress.kubernetes.io/ssl-redirect: "false"    
   path: /
   host: 
-
-podSecurityContext:
-  fsGroup: 1000
-  runAsUser: 1000
