@@ -14,8 +14,10 @@ spec:
       labels:
         app: {{ include "zeebe-operate.fullname" . }}
     spec:
+      {{- if .Values.nodeSelector }}
       nodeSelector:
-        kubernetes.io/arch: amd64
+        {{ .Values.nodeSelector | toYaml | indent 8 | trim }}
+      {{- end }}
       containers:
       - name: {{ .Chart.Name }}
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
