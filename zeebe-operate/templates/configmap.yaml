@@ -29,7 +29,7 @@ data:
         # Index prefix, configured in Zeebe Elasticsearch exporter
         prefix: zeebe-record
     logging:
-{{- with .Values.global.logging }}
+{{- with .Values.logging }}
 {{ . | toYaml | indent 6 }}
 {{- end }}
     #Spring Boot Actuator endpoints to be exposed
