@@ -4,6 +4,12 @@ global:
     host: "elasticsearch-master"
     port: 9200
     clusterName: "elasticsearch"
+
+logging:
+  level:
+    ROOT: INFO
+    org.camunda.operate: DEBUG
+
 service:
   type: ClusterIP
   port: 80
@@ -26,4 +32,4 @@ ingress:
     ingress.kubernetes.io/rewrite-target: "/"
     nginx.ingress.kubernetes.io/ssl-redirect: "false"    
   path: /
-  host: 
+  host:
