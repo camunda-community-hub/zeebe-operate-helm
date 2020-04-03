@@ -1,5 +1,5 @@
 global:
-  zeebe: "{{ .Release.Name }}-zeebe" #the zeebe service instance where operate will connect
+  zeebe: "{{ .Release.Name }}-zeebe-gateway" #the zeebe service instance where operate will connect
   elasticsearch:
     host: "elasticsearch-master"
     port: 9200
