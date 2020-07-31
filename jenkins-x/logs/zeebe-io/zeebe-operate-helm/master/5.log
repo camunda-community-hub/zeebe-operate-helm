@@ -1,0 +1,103 @@
+
+Showing logs for build [32mzeebe-io-zeebe-operate-helm-mas-cjx6d-5[0m stage [32mfrom-build-pack[0m and container [32mcredential-initializer[0m
+{"level":"info","ts":1596196104.8641984,"caller":"creds-init/main.go:44","msg":"Credentials initialized."}
+
+Showing logs for build [32mzeebe-io-zeebe-operate-helm-mas-cjx6d-5[0m stage [32mfrom-build-pack[0m and container [32mworking-dir-initializer[0m
+
+Showing logs for build [32mzeebe-io-zeebe-operate-helm-mas-cjx6d-5[0m stage [32mfrom-build-pack[0m and container [32mplace-tools[0m
+
+Showing logs for build [32mzeebe-io-zeebe-operate-helm-mas-cjx6d-5[0m stage [32mfrom-build-pack[0m and container [32mstep-git-source-zeebe-io-zeebe-operate-helm-mas-cjx6d-27zz4[0m
+{"level":"info","ts":1596196112.5181274,"caller":"git/git.go:105","msg":"Successfully cloned https://github.com/zeebe-io/zeebe-operate-helm.git @ v0.0.27 in path /workspace/source"}
+{"level":"warn","ts":1596196112.5185878,"caller":"git/git.go:152","msg":"Unexpected error: creating symlink: symlink /tekton/home/.ssh /root/.ssh: file exists"}
+{"level":"info","ts":1596196112.559797,"caller":"git/git.go:133","msg":"Successfully initialized and updated submodules in path /workspace/source"}
+
+Showing logs for build [32mzeebe-io-zeebe-operate-helm-mas-cjx6d-5[0m stage [32mfrom-build-pack[0m and container [32mstep-setup-builder-home[0m
+
+Showing logs for build [32mzeebe-io-zeebe-operate-helm-mas-cjx6d-5[0m stage [32mfrom-build-pack[0m and container [32mstep-git-merge[0m
+Using SHAs from PULL_REFS=master:d53f07660b37cb07838e7ed798f6e1c4b71e62c2
+WARNING: no SHAs to merge, falling back to initial cloned commit
+
+Showing logs for build [32mzeebe-io-zeebe-operate-helm-mas-cjx6d-5[0m stage [32mfrom-build-pack[0m and container [32mstep-setup-jx-git-credentials[0m
+Generated Git credentials file /tekton/home/git/credentials
+
+Showing logs for build [32mzeebe-io-zeebe-operate-helm-mas-cjx6d-5[0m stage [32mfrom-build-pack[0m and container [32mstep-build-basic-auth-username[0m
+/tekton/home/basic-auth-user.json
+
+Showing logs for build [32mzeebe-io-zeebe-operate-helm-mas-cjx6d-5[0m stage [32mfrom-build-pack[0m and container [32mstep-build-basic-auth-password[0m
+/tekton/home/basic-auth-pass.json
+
+Showing logs for build [32mzeebe-io-zeebe-operate-helm-mas-cjx6d-5[0m stage [32mfrom-build-pack[0m and container [32mstep-build-release[0m
+rm -rf zeebe-operate/charts
+rm -rf zeebe-operate/zeebe-operate*.tgz
+rm -rf zeebe-operate/requirements.lock
+helm init --client-only
+Creating /tekton/home/.helm 
+Creating /tekton/home/.helm/repository 
+Creating /tekton/home/.helm/repository/cache 
+Creating /tekton/home/.helm/repository/local 
+Creating /tekton/home/.helm/plugins 
+Creating /tekton/home/.helm/starters 
+Creating /tekton/home/.helm/cache/archive 
+Creating /tekton/home/.helm/repository/repositories.yaml 
+Adding stable repo with URL: https://kubernetes-charts.storage.googleapis.com 
+Adding local repo with URL: http://127.0.0.1:8879/charts 
+$HELM_HOME has been configured at /tekton/home/.helm.
+Not installing Tiller due to 'client-only' flag having been set
+Happy Helming!
+helm repo add jenkins-x http://chartmuseum.jenkins-x.io
+"jenkins-x" has been added to your repositories
+#helm repo add releases http://jenkins-x-chartmuseum:8080
+helm dependency build zeebe-operate
+No requirements found in zeebe-operate/charts.
+helm lint zeebe-operate
+==> Linting zeebe-operate
+Lint OK
+
+1 chart(s) linted, no failures
+sed -i -e "s/version:.*/version: 0.0.27/" zeebe-operate/Chart.yaml
+helm package zeebe-operate
+Successfully packaged chart and saved it to: /workspace/source/zeebe-operate-0.0.27.tgz
+curl --fail -u *****:*********** --data-binary "@zeebe-operate-0.0.27.tgz" http://jenkins-x-chartmuseum:8080/api/charts
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+{"saved":true}rm -rf zeebe-operate*.tgz
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100  2914  100    14  100  2900   1200   242k --:--:-- --:--:-- --:--:--  257k
+** step changelog  --verbose --version 0.0.27 
+DEBUG: LC_ALL=C JX_LOG_LEVEL=error git rev-parse --is-shallow-repository
+DEBUG: LC_ALL=C JX_LOG_LEVEL=error git fetch --unshallow
+DEBUG: LC_ALL=C JX_LOG_LEVEL=error git fetch --tags
+Converted /workspace/source to an unshallow repository
+DEBUG: LC_ALL=C JX_LOG_LEVEL=error git for-each-ref --sort=-creatordate --format=%(objectname)%00%(refname:short) --count=2 refs/tags
+DEBUG: LC_ALL=C JX_LOG_LEVEL=error git rev-list -n 1 7ef9ceaa49d8636e15350054c263bc6085e5dec5
+DEBUG: LC_ALL=C JX_LOG_LEVEL=error git for-each-ref --sort=-creatordate --format=%(objectname)%00%(refname:short) --count=1 refs/tags
+DEBUG: JX_LOG_LEVEL=error LC_ALL=C git rev-list -n 1 2b938cf313d3305647c6b11e86c0b3b4d4680d2a
+DEBUG: Using helmBinary helm with feature flag: template-mode
+Generating change log from git ref 55d2a679abff61ea77f4080d7125849a1e36b3a5 => fa36a1119db24328a6a9142f4efe535609dd467d
+DEBUG: Found commits:
+DEBUG:   commit d53f07660b37cb07838e7ed798f6e1c4b71e62c2
+DEBUG:   Author: ******* <Salaboy@gmail.com>
+DEBUG:   Date: Fri Jul 31 12:47:47 2020
+DEBUG:       Update values.yaml
+
+
+Finding issues in commit messages using git format
+DEBUG: Generated release notes:
+
+## Changes
+
+* Update values.yaml (*******)
+
+DEBUG: LC_ALL=C JX_LOG_LEVEL=error git tag --list 0.0.27
+DEBUG: LC_ALL=C JX_LOG_LEVEL=error git tag --list v0.0.27
+WARNING: No release found for zeebe-io/zeebe-operate-helm and tag v0.0.27 so creating a new release
+Updated the release information at https://github.com/zeebe-io/zeebe-operate-helm/releases/tag/v0.0.27
+DEBUG: Not adding dependency matrix /workspace/source/dependency-matrix/matrix.yaml as does not exist
+generated: /workspace/source/zeebe-operate/templates/release.yaml
+Created Release zeebe-operate-helm-0-0-27 resource in namespace **
+Updating PipelineActivity zeebe-io-zeebe-operate-helm-master-5 with version 0.0.27
+Updated PipelineActivities zeebe-io-zeebe-operate-helm-master-5 with release notes URL: https://github.com/zeebe-io/zeebe-operate-helm/releases/tag/v0.0.27
+
+Showing logs for build [32mzeebe-io-zeebe-operate-helm-mas-cjx6d-5[0m stage [32mfrom-build-pack[0m and container [32mstep-promote-step6[0m
+Using https://github.com/zeebe-io/zeebe-operate-helm as source for change discovered from git repo in /workspace/source
+Updated Pull Request: https://github.com/zeebe-io/zeebe-full-helm/pull/83
+Added label updatebot to Pull Request https://github.com/zeebe-io/zeebe-full-helm/pull/83
