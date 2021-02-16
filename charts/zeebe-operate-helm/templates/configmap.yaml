@@ -27,7 +27,7 @@ data:
         # Transport port
         port: {{ .Values.global.elasticsearch.port }}
         # Index prefix, configured in Zeebe Elasticsearch exporter
-        prefix: zeebe-record
+        prefix: {{ .Values.global.elasticsearch.prefix }}
     logging:
 {{- with .Values.logging }}
 {{ . | toYaml | indent 6 }}
