@@ -33,3 +33,6 @@ ingress:
     nginx.ingress.kubernetes.io/ssl-redirect: "false"    
   path: /
   host:
+  tls:
+    enabled: false
+    secretName:
