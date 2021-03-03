@@ -4,6 +4,7 @@ global:
     host: "elasticsearch-master"
     port: 9200
     clusterName: "elasticsearch"
+    prefix: zeebe-record
 
 logging:
   level:
