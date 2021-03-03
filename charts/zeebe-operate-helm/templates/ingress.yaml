@@ -20,4 +20,12 @@ spec:
             backend:
               serviceName: {{ include "zeebe-operate.fullname" . }}
               servicePort: 80
+  {{- if .Values.ingress.tls.enabled }}
+  tls:
+    - hosts:
+        - {{ .Values.ingress.host }}
+      {{- if .Values.ingress.tls.secretName }}
+      secretName: {{ .Values.ingress.tls.secretName }}
+      {{- end }}
+  {{- end }}
 {{- end }}
