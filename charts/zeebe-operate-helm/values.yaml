@@ -15,8 +15,8 @@ service:
   type: ClusterIP
   port: 80
 image:
-  repository: camunda/operate
-  tag: 0.26.0
+  repository: gcr.io/camunda-researchanddevelopment/zeebe-operate-helm
+  tag: 0.0.42
 
 resources: 
   requests:
