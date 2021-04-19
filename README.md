@@ -20,7 +20,7 @@ This functionality is in beta and is subject to change. The design and code is l
   ```
 * Install it
   ```
-  helm install --name zeebe-operate zeebe/zeebe-operate --set global.zeebe=<YOUR ZEEBE CLUSTER NAME>
+  helm install zeebe-operate zeebe/zeebe-operate --set global.zeebe=<YOUR ZEEBE CLUSTER NAME>
   ```
 
   > Note that you can find the Zeebe Cluster name by doing `kubectl get services` and copy the name of the Zeebe service, which will include the Helm Release name used to install the cluster. 
